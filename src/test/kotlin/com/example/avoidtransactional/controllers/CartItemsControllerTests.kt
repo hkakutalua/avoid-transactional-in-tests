@@ -26,10 +26,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.web.context.WebApplicationContext
 import java.math.BigDecimal
 import java.util.*
-import javax.transaction.Transactional
 
 @SpringBootTest
-@Transactional
 internal class CartItemsControllerTests {
     @Autowired
     lateinit var cartsRepository: CartsRepository
