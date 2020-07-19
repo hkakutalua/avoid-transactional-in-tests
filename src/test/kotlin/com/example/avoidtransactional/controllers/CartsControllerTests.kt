@@ -3,12 +3,14 @@ package com.example.avoidtransactional.controllers
 import com.example.avoidtransactional.domain.model.Cart
 import com.example.avoidtransactional.domain.model.Product
 import com.example.avoidtransactional.infrastructure.repositories.CartsRepository
+import com.example.avoidtransactional.utilities.PostgresDbCleanerExtension
 import com.jayway.jsonpath.JsonPath
 import org.assertj.core.api.Assertions.*
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.web.servlet.MockMvc
@@ -20,6 +22,7 @@ import org.springframework.web.context.WebApplicationContext
 import java.util.*
 
 @SpringBootTest
+@ExtendWith(PostgresDbCleanerExtension::class)
 internal class CartsControllerTests {
     @Autowired
     lateinit var cartsRepository: CartsRepository

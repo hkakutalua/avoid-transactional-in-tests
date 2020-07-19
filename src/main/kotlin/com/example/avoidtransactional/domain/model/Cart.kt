@@ -6,7 +6,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "carts")
 class Cart : DomainEntity() {
-    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true)
     private val _items = mutableListOf<ProductItem>()
 
     val items: List<ProductItem>

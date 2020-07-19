@@ -5,6 +5,7 @@ import com.example.avoidtransactional.domain.model.Cart
 import com.example.avoidtransactional.domain.model.Product
 import com.example.avoidtransactional.infrastructure.repositories.CartsRepository
 import com.example.avoidtransactional.infrastructure.repositories.ProductsRepository
+import com.example.avoidtransactional.utilities.PostgresDbCleanerExtension
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.jayway.jsonpath.JsonPath
@@ -13,6 +14,7 @@ import org.hamcrest.Matchers.hasItem
 import org.hamcrest.Matchers.isA
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.findByIdOrNull
@@ -28,6 +30,7 @@ import java.math.BigDecimal
 import java.util.*
 
 @SpringBootTest
+@ExtendWith(PostgresDbCleanerExtension::class)
 internal class CartItemsControllerTests {
     @Autowired
     lateinit var cartsRepository: CartsRepository
