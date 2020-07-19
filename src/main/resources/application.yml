@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST}/${DATABASE_NAME}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    type: com.zaxxer.hikari.HikariDataSource
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+
+    properties:
+      hibernate.show_sql: true
+    open-in-view: false
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    default-property-inclusion: always
+
+  liquibase:
+    change-log: classpath:db/changelog/master.xml

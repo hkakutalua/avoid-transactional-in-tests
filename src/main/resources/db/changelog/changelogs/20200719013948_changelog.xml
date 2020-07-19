@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-1">
+        <createTable tableName="cart_products_items">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="cart_products_itemsPK"/>
+            </column>
+            <column name="version" type="INTEGER"/>
+            <column name="quantity" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-2">
+        <createTable tableName="carts">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="cartsPK"/>
+            </column>
+            <column name="version" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-3">
+        <createTable tableName="carts__items">
+            <column name="cart_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="_items_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-4">
+        <createTable tableName="products">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="productsPK"/>
+            </column>
+            <column name="version" type="INTEGER"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-5">
+        <addUniqueConstraint columnNames="_items_id" constraintName="UK_6gpvxgysuju0dywat7j7r2blq" tableName="carts__items"/>
+    </changeSet>
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-6">
+        <addForeignKeyConstraint baseColumnNames="cart_id" baseTableName="carts__items" constraintName="FK4b3ieebnk0119g7a9xfjs8n6p" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="carts" validate="true"/>
+    </changeSet>
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-7">
+        <addForeignKeyConstraint baseColumnNames="_items_id" baseTableName="carts__items" constraintName="FKaxholwr36i7sym94ihu0vhbps" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="cart_products_items" validate="true"/>
+    </changeSet>
+    <changeSet author="HenrickKakutalua (generated)" id="1595122793438-8">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="cart_products_items" constraintName="FKcustl38p2ods6an9yave0t7v7" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="products" validate="true"/>
+    </changeSet>
+    <changeSet id="1595122793438-8" author="HenrickKakutalua">
+        <loadData tableName="products" relativeToChangelogFile="false" file="db/changelog/data/20200719013948_initial_products.csv" />
+    </changeSet>
+</databaseChangeLog>
